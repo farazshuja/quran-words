@@ -1498,12 +1498,20 @@ export const data =[
 ]
 
 export const maxPage = 551;
+
+export const caseDown = (root = '') => {
+  const casesensitiveChars = ['D', 'S', 'T'];
+  return root.split('')
+    .map((r) => casesensitiveChars.includes(r) ? r : r.toLowerCase())
+    .join('');
+  // root.replaceAll(/A/)
+}
 /**
  * As the generated images are starting from index: 0, but the data is based on index: 1
  * so need to subtract one before sending it back
  */
 export const getPageNumFromRoot = (root: string) => {
-  const rec = data.find((d) => d.root_bw === root);
+  const rec = data.find((d) => d.root_bw === caseDown(root));
   let p = 1;
   if (rec) {
     p = rec.lr_page; // as lur dictioanry images are starting from index 0
