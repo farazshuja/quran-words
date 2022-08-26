@@ -1508,7 +1508,7 @@ export const data =[
 export const maxPage = 551;
 
 export const caseDown = (root = '') => {
-  const casesensitiveChars = ['D', 'S', 'T'];
+  const casesensitiveChars = ['H', 'D', 'S', 'T'];
   return root.split('')
     .map((r) => casesensitiveChars.includes(r) ? r : r.toLowerCase())
     .join('');
