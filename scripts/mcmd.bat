@@ -1,7 +1,7 @@
 @echo off
 set executecounter=0
 :loop
-magick convert -quality 25 %executecounter%.jpg %executecounter%.jpg
+magick convert -trim %executecounter%.png %executecounter%.png
 set /a executecounter=%executecounter%+1
 if "%executecounter%"=="552" goto done
 goto loop

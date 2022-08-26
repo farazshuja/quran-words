@@ -1,3 +1,11 @@
+import Backendless from 'backendless';
+const APP_ID = '9507C978-9602-EC68-FFEB-B3DB0F983500';
+const API_KEY = 'E8B2208C-8091-4CD3-87E6-537697227B2C';
+
+Backendless.initApp(APP_ID, API_KEY);
+
+import pagePartsData from './pageWithPartsData.json';
+
 export const data =[
   { "root_bw": "abb", "lr_page": 23 },
   { "root_bw": "abd", "lr_page": 23 },
@@ -1517,4 +1525,23 @@ export const getPageNumFromRoot = (root: string) => {
     p = rec.lr_page; // as lur dictioanry images are starting from index 0
   }
   return p - 1;
+}
+
+export const getPagePartsByPageNumber = (pageNo: number) => {
+  // @ts-ignore
+  const parts: number[] = pagePartsData[pageNo.toString()];
+  return parts.sort((a, b) => a - b);
+}
+
+// @ts-ignore
+export const saveData = (data) => {
+  Backendless.Data.of( "words" ).save(data)
+    .then( function( obj ) {
+        console.log( "object saved. objectId " + obj.objectId )
+        alert('saved');
+    } )
+    .catch( function( error ) {
+        console.log( "got error - " + error )
+        alert('failed');
+    })
 }
